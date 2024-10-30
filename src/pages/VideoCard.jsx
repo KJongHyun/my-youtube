@@ -1,5 +1,16 @@
 import React from 'react';
+import { formatKo } from '../util/date';
 
 export default function VideoCard({ video }) {
-  return <div>{video.snippet.title}</div>;
+  const { title, thumbnails, channelTitle, publishedAt } = video.snippet;
+  return (
+    <li>
+      <img className='w-full rounded-xl' src={thumbnails.medium.url} alt={title} />
+      <div>
+        <p className='font-semibold my-2 line-clamp-2'>{title}</p>
+        <p className='text-sm opacity-80'>{channelTitle}</p>
+        <p className='text-sm opacity-80'>{formatKo(publishedAt)}</p>
+      </div>
+    </li>
+  );
 }
