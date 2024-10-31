@@ -7,8 +7,19 @@ export default class Youtube {
     return keyword ? this.#searchByKeyword(keyword) : this.#mostPopular();
   }
 
+  async detail(id) {
+    return this.apiClient
+      .detail({
+        part: 'snippet',
+        type: 'video',
+        id: id,
+      })
+      .then((res) => (res.data.items.length > 0 ? res.data.items[0] : null));   
+  }
+
   async #searchByKeyword(keyword) {
-    return this.apiClient.search({
+    return this.apiClient
+      .search({
         params: {
           part: 'snippet',
           maxResults: 25,
@@ -21,7 +32,8 @@ export default class Youtube {
   }
 
   async #mostPopular() {
-    return this.apiClient.videos({
+    return this.apiClient
+      .videos({
         params: {
           part: 'snippet',
           maxResults: 25,
