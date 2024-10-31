@@ -1,10 +1,12 @@
 import React from 'react';
 import { formatKo } from '../util/date';
+import { useNavigate } from 'react-router-dom';
 
 export default function VideoCard({ video }) {
   const { title, thumbnails, channelTitle, publishedAt } = video.snippet;
+  const navigate = useNavigate();
   return (
-    <li>
+    <li onClick={() => {navigate(`/videos/watch/${video.id}`, {state: { video }})}}>
       <img className='w-full rounded-xl' src={thumbnails.medium.url} alt={title} />
       <div>
         <p className='font-semibold my-2 line-clamp-2'>{title}</p>

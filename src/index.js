@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { Navigate, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Videos from './pages/Videos';
 import VideoDetail from './pages/VideoDetail';
 import NotFound from './pages/NotFound';
@@ -17,6 +17,9 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
+        element: <Navigate to="/videos" />
+      },
+      {
         path: '/videos',
         element: <Videos />,
       },
